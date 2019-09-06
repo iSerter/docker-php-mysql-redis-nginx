@@ -1,0 +1,27 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  COMPOSE_VERSION: 1.24.1
+
+before_install:
+  - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker-compose --version
+
+
+install:
+  - docker-compose build
+  - docker-compose up -d
+
+script:
+  - docker ps
+  - docker-compose exec php php -m
+  - docker run composer --version
+
+after_script:
+  - docker-compose stop
+  - docker-compose rm -f

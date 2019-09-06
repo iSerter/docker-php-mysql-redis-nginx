@@ -1,0 +1,6 @@
+{
+    "name": "iserter/docker-php-mysql-redis-nginx",
+    "description": "Docker image with PHP, MySQL, Redis, Nginx",
+    "license": "MIT",
+    "require": {}
+}
